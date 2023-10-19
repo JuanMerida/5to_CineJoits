@@ -1,0 +1,3 @@
+SOURCE DataBase_5to_CineJoits.sql
+SOURCE SPF_5toCineJoits.sql
+SOURCE Triggers_CineJotis.sql
