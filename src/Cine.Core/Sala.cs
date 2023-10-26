@@ -1,7 +1,7 @@
 ﻿namespace Cine.Core;
 public class Sala
 {
-    public byte idSala {get; set;}
-    public byte piso {get; set;}
-    public short capasidad {get; set;}
+    public byte IdSala {get; set;}
+    public byte Piso {get; set;}
+    public short Capacidad {get; set;}
 }

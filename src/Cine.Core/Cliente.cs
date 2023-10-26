@@ -1,6 +1,6 @@
 namespace Cine.Core;
 
-public class Clientes
+public class Cliente
 {
     public short idclientes {get;set;}
     public required string nombre {get;set;}
