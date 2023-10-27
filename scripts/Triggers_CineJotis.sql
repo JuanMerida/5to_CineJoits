@@ -28,7 +28,7 @@ DROP PROCEDURE
 IF EXISTS top10 $$
 CREATE PROCEDURE top10 ( in fechaInicio DATETIME, in FechaFin DATETIME)
 BEGIN
-SELECT p.idPelicula, p.nombre, e.vendidas
+SELECT p.idPelicula, p.nombre, e.NumEntrada
 FROM Peliculas p
 INNER JOIN Proyecciones pr ON pr.idPelicula = p.idPelicula
 INNER JOIN Entradas e on e.idProyeccion = pr.idProyeccion

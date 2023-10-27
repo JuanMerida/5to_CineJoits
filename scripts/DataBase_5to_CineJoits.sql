@@ -9,7 +9,7 @@ PRIMARY KEY (idGenero),
 CONSTRAINT UQ_Genero_genero UNIQUE (genero)
 );
 CREATE TABLE
-Peliculas (
+Pelicula (
 idPelicula SMALLINT NOT NULL,
 nombre VARCHAR(45) NOT NULL,
 idGenero TINYINT NOT NULL,
@@ -19,7 +19,7 @@ CONSTRAINT FK_Peliculas_Genero FOREIGN KEY (idGenero) REFERENCES Genero (idGener
 CONSTRAINT UQ_Peliculas_nombre UNIQUE (nombre)
 );
 CREATE TABLE
-Salas (
+Sala (
 idSala TINYINT NOT NULL,
 piso TINYINT NOT NULL,
 capacidad SMALLINT NOT NULL,
@@ -36,23 +36,22 @@ CONSTRAINT FK_Proyecciones_Salas FOREIGN KEY (idSala) REFERENCES Salas (idSala),
 CONSTRAINT FK_Proyecciones_Peliculas FOREIGN KEY (idPelicula) REFERENCES Peliculas (idPelicula)
 );
 CREATE TABLE
-Clientes (
+Cliente (
 IdCliente SMALLINT NOT NULL,
-nombre VARCHAR(45) NOT NULL,
-apellido VARCHAR(45) NOT NULL,
-email VARCHAR(45) NOT NULL,
-contraseña VARCHAR(45) NOT NULL,
+Nombre VARCHAR(45) NOT NULL,
+Apellido VARCHAR(45) NOT NULL,
+Email VARCHAR(45) NOT NULL,
+Contraseña VARCHAR(45) NOT NULL,
 PRIMARY KEY (idCliente),
 CONSTRAINT UQ_Clientes_email UNIQUE (email)
 );
 CREATE TABLE
-Entradas (
-numeroEntrada INT NOT NULL,
-vendida SMALLINT NOT NULL,
-idCliente SMALLINT NOT NULL,
-valorEntrada INT NOT NULL,
-idProyeccion INT NOT NULL,
+Entrada (
+NumEntrada INT NOT NULL,
+IdCliente SMALLINT NOT NULL,
+ValorEntrada INT NOT NULL,
+IdProyeccion INT NOT NULL,
 PRIMARY KEY (numeroEntrada),
-CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Clientes (idCliente),
-CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (idProyeccion) REFERENCES Proyecciones (idProyeccion)
+CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Clientes (IdCliente),
+CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (IdProyeccion) REFERENCES Proyecciones (IdProyeccion)
 );

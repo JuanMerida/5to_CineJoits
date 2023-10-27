@@ -1,6 +1,6 @@
 namespace Cine.Core;
 
-public class Proyecciones
+public class Proyeccion
 {
     public int IdProyeccion {get; set;}
     public DateTime FechaHora {get; set;}

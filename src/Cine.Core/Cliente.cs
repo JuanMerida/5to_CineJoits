@@ -2,8 +2,10 @@ namespace Cine.Core;
 
 public class Cliente
 {
-    public short idclientes {get;set;}
-    public required string nombre {get;set;}
-    public required string apellido {get;set;}
-    public required string email {get;set;}   
+    public short Idcliente {get;set;}
+    public required string Nombre {get;set;}
+    public required string Apellido {get;set;}
+    public required string Email {get;set;}   
+    public  List<Entrada> Entradas {get; set;}
+    public Cliente() => Entradas = new();
 }
