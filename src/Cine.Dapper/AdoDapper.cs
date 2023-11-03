@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using MySqlConnector;
 using Cine.Core;
+using Dapper;
 
 namespace Cine.Dapper;
 public class AdoDapper : IAdo
@@ -16,6 +17,6 @@ public class AdoDapper : IAdo
 
     public List<Sala> ObtenerSalas()
     {
-        throw new NotImplementedException();
+        return _conexion.Query<Sala>("dfljgasdkfbskdjfsdf").ToList();
     }
 }
