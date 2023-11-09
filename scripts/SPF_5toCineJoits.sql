@@ -20,10 +20,11 @@ END $$
 DELIMITER $$
 DROP PROCEDURE
 IF EXISTS altaSala $$
-CREATE PROCEDURE altasala(unIdSala TINYINT, unPiso TINYINT, unaCapacidad smallint)
+CREATE PROCEDURE altasala(OUT unIdSala TINYINT, unPiso TINYINT, unaCapacidad smallint)
 BEGIN
-INSERT into salas(idsala, piso,capacidad)
-VALUES(unidsala, unpiso,unacapacidad );
+	INSERT into salas(piso,capacidad)
+	VALUES(unpiso,unacapacidad );
+	SET unIdSala = LAST_INSERT_ID();
 END $$
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaProyecciones $$

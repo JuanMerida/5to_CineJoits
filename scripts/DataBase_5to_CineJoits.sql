@@ -20,7 +20,7 @@ CONSTRAINT UQ_Peliculas_nombre UNIQUE (nombre)
 );
 CREATE TABLE
 Sala (
-idSala TINYINT NOT NULL,
+idSala TINYINT NOT NULL auto_increment,
 piso TINYINT NOT NULL,
 capacidad SMALLINT NOT NULL,
 PRIMARY KEY(idSala)

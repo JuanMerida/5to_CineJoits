@@ -12,11 +12,21 @@ public class AdoDapper : IAdo
     
     public void AltaSala(Sala sala)
     {
-        throw new NotImplementedException();
-    }
+        var parametros = new DynamicParameters();
+        parametros.Add("@unIdSala",direction:ParameterDirection.Output);
+        parametros.Add("@unPiso", sala.IdPiso);
+        parametros.Add("@unaCapacidad",sala.Capacidad);
 
+        _conexion.Execute("AltaSala",parametros);
+
+        sala.IdSala=parametros.Get<byte>("@unIdSala");
+    }
+    
+    
+    
     public List<Sala> ObtenerSalas()
     {
+
         return _conexion.Query<Sala>("dfljgasdkfbskdjfsdf").ToList();
     }
 }
