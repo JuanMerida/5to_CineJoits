@@ -3,14 +3,14 @@ CREATE DATABASE 5to_CineJoits;
 USE 5to_CineJoits;
 CREATE TABLE
 Genero (
-idGenero TINYINT NOT NULL,
-genero VARCHAR(45) NOT NULL,
+idGenero TINYINT NOT NULL auto_increment,
+Ngenero VARCHAR(45) NOT NULL,
 PRIMARY KEY (idGenero),
 CONSTRAINT UQ_Genero_genero UNIQUE (genero)
 );
 CREATE TABLE
 Pelicula (
-idPelicula SMALLINT NOT NULL,
+idPelicula SMALLINT NOT NULL auto_increment,
 nombre VARCHAR(45) NOT NULL,
 idGenero TINYINT NOT NULL,
 fechaDeLanzamiento DATE NOT NULL,
@@ -27,7 +27,7 @@ PRIMARY KEY(idSala)
 );
 CREATE TABLE
 Proyecciones (
-idProyeccion INT NOT NULL,
+idProyeccion INT NOT NULL auto_increment,
 fechaHora DATETIME NOT NULL,
 idPelicula SMALLINT NOT NULL,
 idSala TINYINT NOT NULL,

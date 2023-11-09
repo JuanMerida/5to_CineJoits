@@ -21,12 +21,57 @@ public class AdoDapper : IAdo
 
         sala.IdSala=parametros.Get<byte>("@unIdSala");
     }
-    
-    
-    
-    public List<Sala> ObtenerSalas()
+        public List<Sala> ObtenerSalas()
     {
 
         return _conexion.Query<Sala>("dfljgasdkfbskdjfsdf").ToList();
     }
+
+    public void AltaGenero(Genero genero){
+        var parametros = new DynamicParameters();
+        parametros.Add("@unIdGenero",direction:ParameterDirection.Output);
+        parametros.Add("@unGenero",genero.NGenero);
+        
+        _conexion.Execute("AltaGenero",parametros);
+
+        genero.IdGenero=parametros.Get<byte>("@unIdGenero");
+    }
+
+    public List<Genero> ObtenerGenero()
+    {
+        return _conexion.Query<Genero>("dfljgasdkfbskdjfsdf").ToList();
+    }
+
+    public void AltaProyeccion(Proyeccion proyeccion)
+    {
+        var parametros= new DynamicParameters();
+        parametros.Add("@unIdProyeccion", direction: ParameterDirection.Output);
+        parametros.Add("@unaFechahora", proyeccion.FechaHora);
+        parametros.Add("@unIdPelicula",proyeccion.Pelicula.IdPelicula);
+        parametros.Add("@unIdSala", proyeccion.Sala.IdSala);
+
+        _conexion.Execute("AltaProyeccion", parametros);
+        proyeccion.IdProyeccion=parametros.Get<byte>("@unIdproyeccion");
+    }
+
+    public List<Proyeccion> ObtenerProyeccion()
+    {
+        return _conexion.Query<Proyeccion>("dfljgasdkfbskdjfsdf").ToList();
+    }
+
+    public void AltaPelicula (Pelicula pelicula){
+        var parametros = new DynamicParameters();
+        parametros.Add("@unIdPelicula", direction:ParameterDirection.Output);
+        parametros.Add("@unNombre",pelicula.Nombre);
+        parametros.Add("@unIdGenero", pelicula.Genero.IdGenero);
+        parametros.Add("@unFDL", pelicula.FechaDeLazamiento);
+
+        _conexion.Execute("AltaPelicula", parametros);
+        pelicula.IdPelicula=parametros.Get<byte>("unIdPelicula");
+    }
+    public List<Pelicula> ObtenerPelicula(){
+        return _conexion.Query<Pelicula>("dfljgasdkfbskdjfsdf").ToList();
+    }
 }
+
+

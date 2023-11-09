@@ -4,18 +4,20 @@ DELIMITER $$
 USE 5to_CineJoits $$
 DROP PROCEDURE
 IF EXISTS altaGenero $$
-CREATE PROCEDURE altaGenero(unIdGenero TINYINT, unGenero VARCHAR(45))
+CREATE PROCEDURE altaGenero(OUT unIdGenero TINYINT, unNGenero VARCHAR(45))
 BEGIN
-INSERT INTO genero(idGenero, genero)
-VALUES (unIdGenero, unGenero);
+INSERT INTO genero(Ngenero)
+VALUES (unNGenero);
+SET unIdGenero = LAST_INSERT_ID();
 END $$
 DELIMITER $$
 DROP PROCEDURE
 IF EXISTS altaPeliculas $$
-CREATE PROCEDURE altaPeliculas(unIdPelicula SMALLINT, unNombre VARCHAR(45), unIdGenero TINYINT, unFDL DATE)
+CREATE PROCEDURE altaPeliculas(OUT unIdPelicula SMALLINT, unNombre VARCHAR(45), unIdGenero TINYINT, unFDL DATE)
 BEGIN
-INSERT INTO peliculas(idPelicula, nombre, idGenero, fechaDeLanzamiento)
-VALUES(unIdPelicula, unNombre, unIdGenero, unFDL);
+INSERT INTO peliculas(nombre, idGenero, fechaDeLanzamiento)
+VALUES(unNombre, unIdGenero, unFDL);
+SET unIdPelicula = LAST_INSERT_ID
 END $$
 DELIMITER $$
 DROP PROCEDURE
@@ -28,10 +30,11 @@ BEGIN
 END $$
 DELIMITER $$
 DROP PROCEDURE IF EXISTS altaProyecciones $$
-CREATE PROCEDURE altaProyecciones (unIdProyeccion INT, unaFechaHora DATETIME, unIdPelicula SMALLINT, unIdSala TINYINT)
+CREATE PROCEDURE altaProyecciones (OUT unIdProyeccion INT, unaFechaHora DATETIME, unIdPelicula SMALLINT, unIdSala TINYINT)
 BEGIN
-INSERT INTO proyecciones (idProyeccion, fechaHora, idPelicula, idSala)
-VALUES (unIdProyeccion, unaFechaHora, unIdPelicula, unIdSala);
+INSERT INTO proyecciones (fechaHora, idPelicula, idSala)
+VALUES (unaFechaHora, unIdPelicula, unIdSala);
+SET unIdProyeccion = LAST_INSERT_ID();
 END $$
 -- 2)Se pide hacer el SP ‘registrarCliente’ que reciba los datos del cliente. Es importante guardar encriptada la contraseña del cliente usando SHA256.
 DELIMITER $$
