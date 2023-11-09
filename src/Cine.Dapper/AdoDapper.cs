@@ -14,7 +14,7 @@ public class AdoDapper : IAdo
     {
         var parametros = new DynamicParameters();
         parametros.Add("@unIdSala",direction:ParameterDirection.Output);
-        parametros.Add("@unPiso", sala.IdPiso);
+        parametros.Add("@unPiso", sala.Piso);
         parametros.Add("@unaCapacidad",sala.Capacidad);
 
         _conexion.Execute("AltaSala",parametros);
