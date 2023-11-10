@@ -2,6 +2,7 @@
 
 DELIMITER $$
 USE 5to_CineJoits $$
+SELECT 'Creando Stored Procedure' AS 'Estado' $$
 DROP PROCEDURE
 IF EXISTS altaGenero $$
 CREATE PROCEDURE altaGenero(OUT unIdGenero TINYINT, unNGenero VARCHAR(45))
@@ -17,7 +18,7 @@ CREATE PROCEDURE altaPeliculas(OUT unIdPelicula SMALLINT, unNombre VARCHAR(45), 
 BEGIN
 INSERT INTO peliculas(nombre, idGenero, fechaDeLanzamiento)
 VALUES(unNombre, unIdGenero, unFDL);
-SET unIdPelicula = LAST_INSERT_ID
+SET unIdPelicula = LAST_INSERT_ID;
 END $$
 DELIMITER $$
 DROP PROCEDURE

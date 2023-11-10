@@ -1,12 +1,13 @@
 DROP DATABASE IF EXISTS 5to_CineJoits;
 CREATE DATABASE 5to_CineJoits;
 USE 5to_CineJoits;
+SELECT 'Creando BD' AS 'Estado';
 CREATE TABLE
 Genero (
 idGenero TINYINT NOT NULL auto_increment,
 Ngenero VARCHAR(45) NOT NULL,
 PRIMARY KEY (idGenero),
-CONSTRAINT UQ_Genero_genero UNIQUE (genero)
+CONSTRAINT UQ_Genero_genero UNIQUE (Ngenero)
 );
 CREATE TABLE
 Pelicula (
@@ -32,8 +33,8 @@ fechaHora DATETIME NOT NULL,
 idPelicula SMALLINT NOT NULL,
 idSala TINYINT NOT NULL,
 PRIMARY KEY (idProyeccion),
-CONSTRAINT FK_Proyecciones_Salas FOREIGN KEY (idSala) REFERENCES Salas (idSala),
-CONSTRAINT FK_Proyecciones_Peliculas FOREIGN KEY (idPelicula) REFERENCES Peliculas (idPelicula)
+CONSTRAINT FK_Proyecciones_Salas FOREIGN KEY (idSala) REFERENCES Sala (idSala),
+CONSTRAINT FK_Proyecciones_Peliculas FOREIGN KEY (idPelicula) REFERENCES Pelicula (idPelicula)
 );
 CREATE TABLE
 Cliente (
@@ -51,7 +52,12 @@ NumEntrada INT NOT NULL,
 IdCliente SMALLINT NOT NULL,
 ValorEntrada INT NOT NULL,
 IdProyeccion INT NOT NULL,
-PRIMARY KEY (numeroEntrada),
-CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Clientes (IdCliente),
+PRIMARY KEY (NumEntrada),
+CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Cliente (IdCliente),
 CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (IdProyeccion) REFERENCES Proyecciones (IdProyeccion)
 );
+
+SELECT 'Creando Usuarios y Permisos' AS 'Estado';
+DROP USER IF EXISTS 'test'@'localhost';
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'Secu12_test';
+GRANT ALL ON 5to_CineJoits.* TO 'test'@'localhost';
