@@ -10,6 +10,7 @@ public class AdoDapper : IAdo
     public AdoDapper(IDbConnection conexion) => this._conexion = conexion;
     public AdoDapper(string cadena) => _conexion = new MySqlConnection(cadena);
     
+#region Sala
     public void AltaSala(Sala sala)
     {
         var parametros = new DynamicParameters();
@@ -26,6 +27,8 @@ public class AdoDapper : IAdo
 
         return _conexion.Query<Sala>("dfljgasdkfbskdjfsdf").ToList();
     }
+#endregion
+#region Genero
 
     public void AltaGenero(Genero genero){
         var parametros = new DynamicParameters();
@@ -41,6 +44,9 @@ public class AdoDapper : IAdo
     {
         return _conexion.Query<Genero>("dfljgasdkfbskdjfsdf").ToList();
     }
+
+#endregion
+#region Proyeccion 
 
     public void AltaProyeccion(Proyeccion proyeccion)
     {
@@ -59,6 +65,9 @@ public class AdoDapper : IAdo
         return _conexion.Query<Proyeccion>("dfljgasdkfbskdjfsdf").ToList();
     }
 
+#endregion
+#region Pelicula
+
     public void AltaPelicula (Pelicula pelicula){
         var parametros = new DynamicParameters();
         parametros.Add("@unIdPelicula", direction:ParameterDirection.Output);
@@ -72,6 +81,5 @@ public class AdoDapper : IAdo
     public List<Pelicula> ObtenerPelicula(){
         return _conexion.Query<Pelicula>("dfljgasdkfbskdjfsdf").ToList();
     }
+#endregion
 }
-
-
