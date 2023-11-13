@@ -18,7 +18,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unPiso", sala.Piso);
         parametros.Add("@unaCapacidad",sala.Capacidad);
 
-        _conexion.Execute("AltaSala",parametros);
+        _conexion.Execute("AltaSala",parametros, commandType: CommandType.StoredProcedure);
 
         sala.IdSala=parametros.Get<byte>("@unIdSala");
     }
@@ -35,7 +35,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdGenero",direction:ParameterDirection.Output);
         parametros.Add("@unGenero",genero.NGenero);
         
-        _conexion.Execute("AltaGenero",parametros);
+        _conexion.Execute("AltaGenero",parametros, commandType: CommandType.StoredProcedure);
 
         genero.IdGenero=parametros.Get<byte>("@unIdGenero");
     }
@@ -75,7 +75,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdGenero", pelicula.Genero.IdGenero);
         parametros.Add("@unFDL", pelicula.FechaDeLazamiento);
 
-        _conexion.Execute("AltaPelicula", parametros);
+        _conexion.Execute("AltaPelicula", parametros, commandType: CommandType.StoredProcedure);
         pelicula.IdPelicula=parametros.Get<byte>("unIdPelicula");
     }
     public List<Pelicula> ObtenerPelicula(){
