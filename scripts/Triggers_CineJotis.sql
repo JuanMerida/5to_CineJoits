@@ -14,7 +14,7 @@ BEGIN
 IF(EXISTS (SELECT *
             FROM Sala
             WHERE idSala = idSala
-            AND vendida = capacidad )) THEN
+            AND NumEntrada = capacidad )) THEN
             SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Sala Llena';
 END IF;
@@ -27,7 +27,7 @@ DROP TRIGGER IF EXISTS afInsPeliculas $$
 CREATE TRIGGER afInsPeliculas AFTER INSERT ON Pelicula
 FOR EACH ROW
 BEGIN
-	INSERT INTO Proyecciones (idSala, fechaHora, idPelicula)
+	INSERT INTO Proyeccion (idSala, fechaHora, idPelicula)
 		SELECT idSala, now(), new.idPelicula
 		From Sala s;
 END $$

@@ -7,33 +7,33 @@ DROP PROCEDURE
 IF EXISTS altaGenero $$
 CREATE PROCEDURE altaGenero(OUT unIdGenero TINYINT, unNGenero VARCHAR(45))
 BEGIN
-INSERT INTO genero(Ngenero)
+INSERT INTO Genero(Ngenero)
 VALUES (unNGenero);
 SET unIdGenero = LAST_INSERT_ID();
 END $$
 DELIMITER $$
 DROP PROCEDURE
-IF EXISTS altaPeliculas $$
-CREATE PROCEDURE altaPeliculas(OUT unIdPelicula SMALLINT, unNombre VARCHAR(45), unIdGenero TINYINT, unFDL DATE)
+IF EXISTS altaPelicula $$
+CREATE PROCEDURE altaPelicula(OUT unIdPelicula SMALLINT, unNombre VARCHAR(45), unIdGenero TINYINT, unFDL DATE)
 BEGIN
-INSERT INTO peliculas(nombre, idGenero, fechaDeLanzamiento)
+INSERT INTO Pelicula(nombre, idGenero, fechaDeLanzamiento)
 VALUES(unNombre, unIdGenero, unFDL);
-SET unIdPelicula = LAST_INSERT_ID;
+SET unIdPelicula = LAST_INSERT_ID();
 END $$
 DELIMITER $$
 DROP PROCEDURE
 IF EXISTS altaSala $$
-CREATE PROCEDURE altasala(OUT unIdSala TINYINT, unPiso TINYINT, unaCapacidad smallint)
+CREATE PROCEDURE altaSala(OUT unIdSala TINYINT, unPiso TINYINT, unaCapacidad smallint)
 BEGIN
-	INSERT into salas(piso,capacidad)
+	INSERT into Sala(piso,capacidad)
 	VALUES(unpiso,unacapacidad );
 	SET unIdSala = LAST_INSERT_ID();
 END $$
 DELIMITER $$
-DROP PROCEDURE IF EXISTS altaProyecciones $$
-CREATE PROCEDURE altaProyecciones (OUT unIdProyeccion INT, unaFechaHora DATETIME, unIdPelicula SMALLINT, unIdSala TINYINT)
+DROP PROCEDURE IF EXISTS altaProyeccion $$
+CREATE PROCEDURE altaProyeccion (OUT unIdProyeccion INT, unaFechaHora DATETIME, unIdPelicula SMALLINT, unIdSala TINYINT)
 BEGIN
-INSERT INTO proyecciones (fechaHora, idPelicula, idSala)
+INSERT INTO Proyecciones (fechaHora, idPelicula, idSala)
 VALUES (unaFechaHora, unIdPelicula, unIdSala);
 SET unIdProyeccion = LAST_INSERT_ID();
 END $$
@@ -86,3 +86,19 @@ WHERE p.idPelicula = unIdPelicula
 AND p.fechaHora BETWEEN fecha_inicio AND fecha_fin;
 RETURN Recaudado;
 END $$
+
+DELIMITER ;
+SELECT 'Creando Usuarios y Permisos' AS 'Estado';
+DROP USER IF EXISTS 'test'@'localhost';
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'T12-test';
+GRANT SELECT ON 5to_CineJoits.* TO 'test'@'localhost';
+GRANT UPDATE ON 5to_CineJoits.* TO 'test'@'localhost';
+GRANT DELETE ON 5to_CineJoits.* TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaGenero TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaPeliculas TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altasala TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaProyecciones TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE registrarCliente TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE venderEntrada TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE top10 TO 'test'@'localhost';
+FLUSH PRIVILEGES;

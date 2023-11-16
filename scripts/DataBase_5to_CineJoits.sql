@@ -3,7 +3,7 @@ CREATE DATABASE 5to_CineJoits;
 USE 5to_CineJoits;
 SELECT 'Creando BD' AS 'Estado';
 CREATE TABLE
-Genero (
+Genero(
 idGenero TINYINT NOT NULL auto_increment,
 Ngenero VARCHAR(45) NOT NULL,
 PRIMARY KEY (idGenero),
@@ -56,8 +56,3 @@ PRIMARY KEY (NumEntrada),
 CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Cliente (IdCliente),
 CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (IdProyeccion) REFERENCES Proyecciones (IdProyeccion)
 );
-
-SELECT 'Creando Usuarios y Permisos' AS 'Estado';
-DROP USER IF EXISTS 'test'@'localhost';
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'Secu12_test';
-GRANT ALL ON 5to_CineJoits.* TO 'test'@'localhost';
