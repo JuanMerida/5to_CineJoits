@@ -9,7 +9,7 @@ public class TestAdoSala : TestAdo
     {
         var newSala = new Sala()
         {
-            Piso = 1,
+            Piso = 4,
             Capacidad=30
         };
         

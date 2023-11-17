@@ -10,7 +10,7 @@ public class TestAdoProyeccion : TestAdo
     var JhonWick = Ado.ObtenerPelicula().FirstOrDefault(p=>p.Nombre == "Jhon Wick");
         Assert.NotNull(JhonWick);
     var capacidad = Ado.ObtenerSalas().FirstOrDefault(s=>s.Capacidad == 30);
-        Assert.NotNull(capacidad);
+        Assert.NotNull(capacidad );
 
         var newProyeccion = new Proyeccion()
         {

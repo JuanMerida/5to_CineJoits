@@ -33,7 +33,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS altaProyeccion $$
 CREATE PROCEDURE altaProyeccion (OUT unIdProyeccion INT, unaFechaHora DATETIME, unIdPelicula SMALLINT, unIdSala TINYINT)
 BEGIN
-INSERT INTO Proyecciones (fechaHora, idPelicula, idSala)
+INSERT INTO Proyeccion (fechaHora, idPelicula, idSala)
 VALUES (unaFechaHora, unIdPelicula, unIdSala);
 SET unIdProyeccion = LAST_INSERT_ID();
 END $$
@@ -95,9 +95,9 @@ GRANT SELECT ON 5to_CineJoits.* TO 'test'@'localhost';
 GRANT UPDATE ON 5to_CineJoits.* TO 'test'@'localhost';
 GRANT DELETE ON 5to_CineJoits.* TO 'test'@'localhost';
 GRANT EXECUTE ON PROCEDURE altaGenero TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE altaPeliculas TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaPelicula TO 'test'@'localhost';
 GRANT EXECUTE ON PROCEDURE altasala TO 'test'@'localhost';
-GRANT EXECUTE ON PROCEDURE altaProyecciones TO 'test'@'localhost';
+GRANT EXECUTE ON PROCEDURE altaProyeccion TO 'test'@'localhost';
 GRANT EXECUTE ON PROCEDURE registrarCliente TO 'test'@'localhost';
 GRANT EXECUTE ON PROCEDURE venderEntrada TO 'test'@'localhost';
 GRANT EXECUTE ON PROCEDURE top10 TO 'test'@'localhost';

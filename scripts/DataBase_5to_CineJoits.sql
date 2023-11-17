@@ -27,7 +27,7 @@ capacidad SMALLINT NOT NULL,
 PRIMARY KEY(idSala)
 );
 CREATE TABLE
-Proyecciones (
+Proyeccion (
 idProyeccion INT NOT NULL auto_increment,
 fechaHora DATETIME NOT NULL,
 idPelicula SMALLINT NOT NULL,
@@ -54,5 +54,5 @@ ValorEntrada INT NOT NULL,
 IdProyeccion INT NOT NULL,
 PRIMARY KEY (NumEntrada),
 CONSTRAINT FK_Entradas_Clientes FOREIGN KEY (IdCliente) REFERENCES Cliente (IdCliente),
-CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (IdProyeccion) REFERENCES Proyecciones (IdProyeccion)
+CONSTRAINT FK_Entradas_Proyecciones FOREIGN KEY (IdProyeccion) REFERENCES Proyeccion (IdProyeccion)
 );

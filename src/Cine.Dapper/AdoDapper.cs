@@ -62,7 +62,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unIdSala", proyeccion.Sala.IdSala);
 
         _conexion.Execute("AltaProyeccion", parametros, commandType: CommandType.StoredProcedure);
-        proyeccion.IdProyeccion=parametros.Get<byte>("@unIdproyeccion");
+        proyeccion.IdProyeccion=parametros.Get<int>("@unIdProyeccion");
     }
     
     private static readonly string _queryProyeccion
@@ -87,7 +87,7 @@ public class AdoDapper : IAdo
         parametros.Add("@unFDL", pelicula.FechaDeLazamiento);
 
         _conexion.Execute("AltaPelicula", parametros, commandType: CommandType.StoredProcedure);
-        pelicula.IdPelicula=parametros.Get<byte>("unIdPelicula");
+        pelicula.IdPelicula=parametros.Get<int>("unIdPelicula");
     }
     private static readonly string _queryPelicula
         = @"SELECT * 
@@ -98,3 +98,5 @@ public class AdoDapper : IAdo
     }
     #endregion
 }
+
+
